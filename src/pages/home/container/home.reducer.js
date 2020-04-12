@@ -9,7 +9,7 @@ const homeReducer = (state = initialState, action) => {
     case HOME.SET_POST_DATA:
       return {
         ...state,
-        tableData: action.payload,
+        tableData: [ ...state.tableData, ...action.payload ],
     };
 
     default:

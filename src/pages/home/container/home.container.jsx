@@ -10,8 +10,9 @@ class Home extends React.Component {
     }
 
     componentDidMount() {
-        const { fetchTableData } = this.props;
-        this.interval = window.setInterval(() => fetchTableData(), this.interval+10000);
+        const { fetchTableData = []} = this.props;
+        if(!fetchTableData.length) fetchTableData();
+        this.interval = window.setInterval(() => fetchTableData(), 10000);
     }
 
     componentWillUnmount() {

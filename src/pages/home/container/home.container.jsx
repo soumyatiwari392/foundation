@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Box from '@material-ui/core/Box';
 import { fetchTableDataAction } from './home.action';
 import TablePaginationActions from '../../../components/atoms/Table';
+import Typography from '@material-ui/core/Typography';
 
 class Home extends React.Component {
     constructor(props) {
@@ -22,7 +24,19 @@ class Home extends React.Component {
     render() {
         const { tableData = {} } = this.props;
         return (
-            <TablePaginationActions tableData={tableData}/>
+            <Box style={{
+                width: '50%',
+                margin: '0 auto'
+            }}>
+                <Typography variant="h4"gutterBottom style={{
+                    textAlign: 'center',
+                    textDecoration: 'underline'
+                }}>
+                    Posts
+                </Typography>
+                <TablePaginationActions tableData={tableData}/>
+            </Box>
+            
         )
     }
 }

@@ -1,49 +1,42 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchGridDataAction } from './home.action';
-import { AgGridReact } from 'ag-grid-react';
-import columnDefs from '../config/home.config';
-import 'ag-grid-community/dist/styles/ag-grid.css';
-import 'ag-grid-community/dist/styles/ag-theme-balham.css';
+import { fetchTableDataAction } from './home.action';
+import TablePaginationActions from '../../../components/atoms/Table';
 
 class Home extends React.Component {
+    constructor(props) {
+        super(props);
+        this.interval = 0;
+    }
+
     componentDidMount() {
-        const { fetchGridData } = this.props;
-        fetchGridData();
+        const { fetchTableData } = this.props;
+        this.interval = window.setInterval(() => fetchTableData(), this.interval+10000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
     }
 
     render() {
-        const { gridData } = this.props; 
-        console.log(columnDefs)
+        const { tableData = {} } = this.props;
         return (
-            <div
-                className="ag-theme-balham"
-                style={{
-                textAlign: 'center',
-                margin: 'auto',
-                height: '500px',
-                width: '100%' }}
-            >
-                <AgGridReact
-                    columnDefs={columnDefs}
-                    rowData={gridData}>
-                </AgGridReact>
-            </div>
-        );
+            <TablePaginationActions tableData={tableData}/>
+        )
     }
 }
 
 const mapStateToProps = state => {
     const { homeReducer } = state;
     return {
-        gridData: homeReducer && homeReducer.gridData
+        tableData: homeReducer && homeReducer.tableData
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchGridData: () => {
-            dispatch(fetchGridDataAction());
+        fetchTableData: () => {
+            dispatch(fetchTableDataAction());
         },
     }
 }

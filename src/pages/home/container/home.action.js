@@ -1,11 +1,11 @@
 import HOME from './home.constants';
 
-export const fetchGridDataAction = payload => ({
-    type: HOME.FETCH_GRID_DATA,
+export const fetchTableDataAction = payload => ({
+    type: HOME.FETCH_POST_DATA,
     payload,
 });
 
-export const setGridDataAction = payload => ({
-    type: HOME.SET_GRID_DATA,
+export const setTableDataAction = payload => ({
+    type: HOME.SET_POST_DATA,
     payload,
 });

@@ -1,15 +1,15 @@
 import HOME from './home.constants';
 
 const initialState = {
-    gridData: []
+  tableData: []
 };
 
 const homeReducer = (state = initialState, action) => {
   switch (action.type) {
-    case HOME.SET_GRID_DATA:
+    case HOME.SET_POST_DATA:
       return {
         ...state,
-        gridData: action.payload,
+        tableData: action.payload,
     };
 
     default:

@@ -1,7 +1,7 @@
 import superagent from 'superagent';
 
-const getExternal = async () => {
-    const requestUrl = 'https://raw.githubusercontent.com/ag-grid/ag-grid/master/packages/ag-grid-docs/src/olympicWinners.json';
+const getExternal = async (offset = 0) => {
+    const requestUrl = `https://hn.algolia.com/api/v1/search_by_date?tags=story&page=0`;
     const requestType = 'get';
     return await new Promise(resolve => {
       superagent[requestType](requestUrl)
